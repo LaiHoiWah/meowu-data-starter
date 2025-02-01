@@ -20,4 +20,21 @@
         <module>data-core</module>
         <module>mybatis-plugins</module>
     </modules>
+
+    <dependencyManagement>
+        <!-- meowu -->
+        <dependencies>
+            <dependency>
+                <groupId>com.meowu.starter</groupId>
+                <artifactId>data-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.meowu.starter</groupId>
+                <artifactId>mybatis-plugins</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

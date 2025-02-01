@@ -7,7 +7,6 @@
     <modelVersion>4.0.0</modelVersion>
     <name>mybatis-plugins</name>
     <artifactId>mybatis-plugins</artifactId>
-    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -17,6 +16,12 @@
     </parent>
 
     <dependencies>
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -24,10 +29,15 @@
         </dependency>
 
         <!-- meowu -->
-<!--        <dependency>-->
-<!--            <groupId>com.meowu.starter</groupId>-->
-<!--            <artifactId>data-core</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.meowu.starter</groupId>
+            <artifactId>data-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.meowu.starter</groupId>
+            <artifactId>commons</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
