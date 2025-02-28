@@ -6,7 +6,7 @@ import lombok.Getter;
 public class Expression{
 
     private String property;
-    private Boolean not;
+    private String alias;
 
     public Expression(){
 
@@ -16,8 +16,8 @@ public class Expression{
         this.property = property;
     }
 
-    public Expression not(){
-        this.not = true;
+    public Expression as(String alias){
+        this.alias = alias;
         return this;
     }
 }

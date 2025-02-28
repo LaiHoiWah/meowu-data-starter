@@ -1,9 +1,9 @@
 package com.meowu.starter.data.mybatis.plugins.criteria.predicate;
 
-public class Count extends Expression{
+public class Count extends Select{
 
     public Count(){
-        super();
+        super("*");
     }
 
     public Count(String property){

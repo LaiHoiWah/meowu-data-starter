@@ -1,49 +1,62 @@
 package com.meowu.starter.data.mybatis.plugins.provider;
 
-import com.meowu.starter.data.mybatis.plugins.commons.entity.MapperInfo;
-import com.meowu.starter.data.mybatis.plugins.utils.MapperUtils;
+import com.meowu.starter.data.mybatis.plugins.commons.entity.Metadata;
+import com.meowu.starter.data.mybatis.plugins.criteria.Criteria;
+import com.meowu.starter.data.mybatis.plugins.utils.MetadataUtils;
 import com.meowu.starter.data.mybatis.plugins.utils.SqlUtils;
 import org.apache.ibatis.jdbc.SQL;
+
+import java.util.List;
 
 public class SqlProvider<T>{
 
     public String insert(T insert){
-        // get mapper info
-        MapperInfo mapper = MapperUtils.getMapperInfoWithFieldValue(insert);
+        // get Metadata
+        Metadata metadata = MetadataUtils.getMetadata(insert);
+
         // create sql
         return new SQL(){{
             // insert into
-            INSERT_INTO(SqlUtils.getTableName(mapper));
+            INSERT_INTO(SqlUtils.getTableName(metadata));
             // into columns
-            INTO_COLUMNS(SqlUtils.getNonNullInsertColumns(mapper).toArray(String[]::new));
+            INTO_COLUMNS(SqlUtils.getNonNullInsertColumns(metadata).toArray(String[]::new));
             // into values
-            INTO_VALUES(SqlUtils.getNonNullInsertValues(mapper).toArray(String[]::new));
+            INTO_VALUES(SqlUtils.getNonNullInsertValues(metadata).toArray(String[]::new));
         }}.toString();
     }
 
     public String update(T update){
-        // get mapper info
-        MapperInfo mapper = MapperUtils.getMapperInfoWithFieldValue(update);
+        // get Metadata
+        Metadata metadata = MetadataUtils.getMetadata(update);
         // create sql
         return new SQL(){{
             // update from
-            UPDATE(SqlUtils.getTableName(mapper));
+            UPDATE(SqlUtils.getTableName(metadata));
             // set update columns
-            SET(SqlUtils.getNonNullUpdateSet(mapper).toArray(String[]::new));
+            SET(SqlUtils.getNonNullUpdateSet(metadata).toArray(String[]::new));
             // update by id
-            WHERE(SqlUtils.getNonNullWhereConditionByColumn(mapper, "id"));
+            WHERE(SqlUtils.getNonNullWhereConditionByColumn(metadata, "id"));
         }}.toString();
     }
 
     public String delete(T delete){
         // get mapper info
-        MapperInfo mapper = MapperUtils.getMapperInfoWithFieldValue(delete);
+        Metadata metadata = MetadataUtils.getMetadata(delete);
         // create sql
         return new SQL(){{
             // delete from
-            DELETE_FROM(SqlUtils.getTableName(mapper));
+            DELETE_FROM(SqlUtils.getTableName(metadata));
             // update by id
-            WHERE(SqlUtils.getNonNullWhereConditionByColumn(mapper, "id"));
+            WHERE(SqlUtils.getNonNullWhereConditionByColumn(metadata, "id"));
         }}.toString();
     }
+
+//    public String select(Criteria criteria){
+//        // get mapper info
+//        MapperInfo mapper = MapperUtils.getMapperInfo(criteria.getTypeOf());
+//
+//        return new SQL(){{
+//
+//        }}.toString();
+//    }
 }

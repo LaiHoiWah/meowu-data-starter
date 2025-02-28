@@ -6,6 +6,7 @@ import lombok.Getter;
 public class Predicate<T> extends Expression{
 
     private T value;
+    private Boolean not;
 
     public Predicate(){
         super();
@@ -17,5 +18,10 @@ public class Predicate<T> extends Expression{
 
     public void value(T value){
         this.value = value;
+    }
+
+    public Predicate<T> not(){
+        this.not = true;
+        return this;
     }
 }
