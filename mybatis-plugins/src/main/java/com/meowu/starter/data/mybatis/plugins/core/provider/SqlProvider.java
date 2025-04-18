@@ -11,11 +11,11 @@ public class SqlProvider{
             <script>
             <![CDATA[
                 INSERT INTO ${tableName}
-                    <foreach collection="predicate" item="item" open="(" close=")" separator=",">
+                    <foreach collection="inserts" item="item" open="(" close=")" separator=",">
                         ${item.field.column}
                     </foreach>
                 VALUE
-                    <foreach collection="predicate" item="item" open="(" close=")" separator=",">
+                    <foreach collection="inserts" item="item" open="(" close=")" separator=",">
                         #{item.value, javaType=item.field.javaType, typeHandler=item.field.typeHandler}
                     </foreach>
             ]]>
@@ -30,7 +30,9 @@ public class SqlProvider{
             <![CDATA[
                 UPDATE FROM ${tableName}
                 <SET>
-            
+                    <foreach collection="updates" item="item" open="(" close=")" separator=",">
+                        ${item.field.column} = #{item.value, javaType=item.field.javaType, typeHandler=item.field.typeHandler},
+                    </foreach>
                 </SET>
                 <WHERE>
             
