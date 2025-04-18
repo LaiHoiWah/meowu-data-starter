@@ -23,7 +23,7 @@ public class Criteria{
     }
 
     public void select(Select... selects){
-        this.selects.getSelects().addAll(Arrays.stream(selects).toList());
+//        this.selects.getSelects().addAll(Arrays.stream(selects).toList());
     }
 
     public void where(Expression... expressions){

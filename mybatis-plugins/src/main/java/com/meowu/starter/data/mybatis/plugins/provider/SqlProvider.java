@@ -51,12 +51,12 @@ public class SqlProvider<T>{
         }}.toString();
     }
 
-//    public String select(Criteria criteria){
-//        // get mapper info
+    public String select(Criteria criteria){
+        // get mapper info
 //        MapperInfo mapper = MapperUtils.getMapperInfo(criteria.getTypeOf());
-//
-//        return new SQL(){{
-//
-//        }}.toString();
-//    }
+
+        return new SQL(){{
+
+        }}.toString();
+    }
 }
