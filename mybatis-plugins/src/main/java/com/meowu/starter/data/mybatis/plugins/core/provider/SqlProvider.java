@@ -30,7 +30,7 @@ public class SqlProvider{
             <![CDATA[
                 UPDATE FROM ${tableName}
                 <SET>
-                    <foreach collection="updates" item="item" open="(" close=")" separator=",">
+                    <foreach collection="updates" item="item" separator=",">
                         ${item.field.column} = #{item.value, javaType=item.field.javaType, typeHandler=item.field.typeHandler},
                     </foreach>
                 </SET>

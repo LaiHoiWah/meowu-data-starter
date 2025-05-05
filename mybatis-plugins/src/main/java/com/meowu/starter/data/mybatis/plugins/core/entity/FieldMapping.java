@@ -11,5 +11,4 @@ public class FieldMapping{
     private String column;
     private String javaType;
     private String typeHandler;
-    private Boolean nullable;
 }

@@ -8,7 +8,5 @@ public @interface Column{
 
     String name() default "";
 
-    boolean nullable() default true;
-
     Class<?> typeHandler();
 }

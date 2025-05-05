@@ -1,4 +1,4 @@
-package com.meowu.starter.data.entity;
+package com.meowu.starter.data.mybatis.plugins.core.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +14,8 @@ public class Pageable<T>{
     private Integer total;
 
     public Pageable(List<T> content, Integer pageNumber, Integer total){
-        this.content = content;
+        this.content    = content;
         this.pageNumber = pageNumber;
-        this.total = total;
+        this.total      = total;
     }
 }

@@ -1,6 +1,6 @@
-package com.meowu.starter.data.entity;
+package com.meowu.starter.data.mybatis.plugins.core.entity;
 
-import com.meowu.starter.data.commons.constants.PageConstants;
+import com.meowu.starter.data.mybatis.plugins.commons.constants.PageConstants;
 
 public abstract class PageRequest{
 

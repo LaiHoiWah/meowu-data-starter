@@ -1,4 +1,4 @@
-package com.meowu.starter.data.entity;
+package com.meowu.starter.data.core.entity;
 
 import java.io.Serializable;
 

@@ -54,19 +54,15 @@ public class TableMapping{
 
                 // get annotation
                 Column columnAnnotation = ReflectionUtils.getAnnotation(field, Column.class);
-                if(Objects.nonNull(columnAnnotation)){
-                    fieldMapping.setColumn(columnAnnotation.name());
-                    fieldMapping.setNullable(columnAnnotation.nullable());
-                    fieldMapping.setTypeHandler(Objects.isNull(columnAnnotation.typeHandler()) ? null : columnAnnotation.typeHandler().getName());
-                }
+                fieldMapping.setColumn(
+                    Objects.isNull(columnAnnotation) || StringUtils.isBlank(columnAnnotation.name()) ?
+                        SpellUtils.toUnderScore(field.getName()) : columnAnnotation.name()
+                );
+                fieldMapping.setTypeHandler(
+                    Objects.isNull(columnAnnotation) || Objects.isNull(columnAnnotation.typeHandler()) ?
+                        null : columnAnnotation.typeHandler().getName()
+                );
 
-                // set default
-                if(StringUtils.isBlank(columnAnnotation.name())){
-                    fieldMapping.setColumn(SpellUtils.toUnderScore(field.getName()));
-                }
-                if(fieldMapping.getNullable()){
-                    fieldMapping.setNullable(true);
-                }
                 // add into fields
                 fields.add(fieldMapping);
             }
