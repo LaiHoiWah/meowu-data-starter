@@ -67,40 +67,6 @@ public class SqlUtils{
         }}.toString();
     }
 
-    public static String getSelectSql(SelectQuery selectQuery){
-        if(Objects.isNull(selectQuery)){
-            throw new IllegalArgumentException("Select condition must not be null");
-        }
-
-        // get select setting
-        boolean distinct = Objects.nonNull(selectQuery.getDistinct()) && selectQuery.getDistinct();
-        // select columns
-        List<String> columns = selectQuery.getSelects()
-                                          .stream()
-                                          .map(Select::getField)
-                                          .map(FieldMapping::getColumn)
-                                          .toList();
-
-        if(CollectionUtils.isEmpty(columns)){
-            columns.add("*");
-        }
-
-        return new SQL(){{
-            // select
-            if(distinct){
-                SELECT_DISTINCT(columns.toArray(String[]::new));
-            }else{
-                SELECT(columns.toArray(String[]::new));
-            }
-
-            // from
-            FROM(selectQuery.getTableName());
-
-            // where
-
-        }}.toString();
-    }
-
     private static String getInsertValueSql(FieldMapping field){
         if(Objects.isNull(field)){
             throw new SqlGenerationException("Field mapping must not be null");
